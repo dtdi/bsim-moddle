@@ -1,0 +1,537 @@
+{
+  "name": "CONFIGURATION",
+  "uri": "http://bsim.hpi.uni-potsdam.de/scylla/simModel",
+  "prefix": "bsim",
+  "xml": {
+    "tagAlias": "lowerCase"
+  },
+  "associations": [],
+  "types": [
+    {
+      "name": "definitions",
+      "properties": [
+        {
+          "name": "targetNamespace",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "expressionLanguage",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "simulationConfiguration",
+          "type": "simulationConfiguration",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "globalConfiguration",
+      "meta": {
+        "displayName": "Global Configuration"
+      },
+      "properties": [
+        {
+          "name": "id",
+          "type": "String",
+          "isAttr": true,
+          "isId": true,
+          "meta": {
+            "displayName": "ID"
+          }
+        },
+        {
+          "name": "randomSeed",
+          "type": "Integer"
+        },
+        {
+          "name": "zoneOffset",
+          "type": "String"
+        },
+        {
+          "name": "targetNamespace",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "timetables",
+          "type": "timetables"
+        },
+        {
+          "name": "resourceData",
+          "type": "resourceData"
+        },
+        {
+          "name": "expressionLanguage",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "resourceAssignmentOrder",
+          "type": "resourceAssignmentOrder",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "simulationConfiguration",
+      "properties": [
+        {
+          "name": "id",
+          "type": "String",
+          "isAttr": true,
+          "isId": true,
+          "meta": {
+            "displayName": "ID"
+          }
+        },
+        {
+          "name": "processRef",
+          "type": "bpmn:Process",
+          "isAttr": true,
+          "meta": {
+            "displayName": "Referenced Process Id"
+          }
+        },
+        {
+          "name": "processInstances",
+          "type": "Integer",
+          "isAttr": true,
+          "meta": {
+            "displayName": "Number of Process Instances"
+          }
+        },
+        {
+          "name": "startDateTime",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "endDateTime",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "randomSeed",
+          "type": "Long",
+          "isAttr": true
+        },
+        {
+          "name": "startEvent",
+          "type": "startEvent"
+        },
+        {
+          "name": "tasks",
+          "type": "task",
+          "isMany": true
+        },
+        {
+          "name": "gateways",
+          "type": "Gateway",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "RootElement",
+      "isAbstract": true,
+      "properties": [
+        {
+          "name": "id",
+          "type": "String",
+          "isAttr": true
+        }
+      ]
+    },
+    {
+      "name": "GlobalRootElement",
+      "isAbstract": true,
+      "superClass": ["RootElement"]
+    },
+    {
+      "name": "Gateway",
+      "superClass": ["RootElement"],
+      "isAbstract": true
+    },
+    {
+      "name": "startEvent",
+      "superClass": ["RootElement"],
+      "properties": [
+        {
+          "name": "arrivalRate",
+          "type": "ArrivalRate"
+        }
+      ]
+    },
+    {
+      "name": "exclusiveGateway",
+      "superClass": ["Gateway"],
+      "properties": [
+        {
+          "name": "outgoingSequenceFlow",
+          "type": "OutgoingSequenceFlow",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "OutgoingSequenceFlow",
+      "properties": [
+        {
+          "name": "id",
+          "type": "String"
+        },
+        {
+          "name": "branchingProbability",
+          "type": "BranchingProbability"
+        }
+      ]
+    },
+    {
+      "name": "BranchingProbability",
+      "properties": [
+        {
+          "name": "value",
+          "type": "Number",
+          "isBody": true
+        }
+      ]
+    },
+    {
+      "name": "task",
+      "superClass": ["RootElement"],
+      "properties": [
+        {
+          "name": "name",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "resources",
+          "type": "resources"
+        },
+        {
+          "name": "duration",
+          "type": "duration"
+        },
+        {
+          "name": "setUpDuration",
+          "type": "setUpDuration"
+        }
+      ]
+    },
+    {
+      "name": "resourceAssignmentOrder",
+      "properties": [
+        {
+          "name": "value",
+          "type": "String",
+          "isBody": true
+        }
+      ]
+    },
+    {
+      "name": "ArrivalRate",
+      "properties": [
+        {
+          "name": "timeUnit",
+          "type": "TimeUnit",
+          "isAttr": true
+        },
+        {
+          "name": "distribution",
+          "type": "Distribution"
+        }
+      ]
+    },
+    {
+      "name": "resources",
+      "properties": [
+        {
+          "name": "resource",
+          "type": "resource",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "timetables",
+      "properties": [
+        {
+          "name": "timetable",
+          "type": "timetable",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "resourceData",
+      "properties": [
+        {
+          "name": "dynamicResource",
+          "type": "dynamicResource",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "timetable",
+      "properties": [
+        {
+          "name": "id",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "timetableItem",
+          "type": "timetableItem",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "dynamicResource",
+      "properties": [
+        {
+          "name": "id",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "defaultQuantity",
+          "type": "Integer",
+          "isAttr": true
+        },
+        {
+          "name": "defaultTimetableId",
+          "type": "bsim:timetable",
+          "isAttr": true
+        },
+        {
+          "name": "defaultCost",
+          "type": "Real",
+          "isAttr": true
+        },
+        {
+          "name": "defaultTimeUnit",
+          "type": "TimeUnit",
+          "isAttr": true
+        },
+        {
+          "name": "instances",
+          "type": "instance"
+        }
+      ]
+    },
+    {
+      "name": "instance",
+      "properties": [
+        {
+          "name": "name",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "cost",
+          "type": "Integer",
+          "isAttr": true
+        },
+        {
+          "name": "timetableId",
+          "type": "timetable",
+          "isAttr": true,
+          "isReference": true
+        }
+      ]
+    },
+    {
+      "name": "resource",
+      "properties": [
+        {
+          "name": "id",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "amount",
+          "type": "Integer",
+          "isAttr": true
+        },
+        {
+          "name": "assignmentDefinition",
+          "type": "assignmentDefinition"
+        },
+        {
+          "name": "dynamicResource",
+          "type": "bsim:dynamicResource",
+          "isReference": true
+        }
+      ]
+    },
+    {
+      "name": "timetableItem",
+      "properties": [
+        { "name": "from", "type": "DayOfWeek", "isAttr": true },
+        { "name": "to", "type": "DayOfWeek", "isAttr": true },
+        { "name": "beginTime", "type": "Number", "isAttr": true },
+        { "name": "endTime", "type": "Number", "isAttr": true }
+      ]
+    },
+    {
+      "name": "assignmentDefinition",
+      "properties": [
+        {
+          "name": "priority",
+          "type": "priority"
+        }
+      ]
+    },
+    {
+      "name": "priority",
+      "properties": [
+        {
+          "name": "value",
+          "type": "Number",
+          "isBody": true
+        }
+      ]
+    },
+    {
+      "name": "duration",
+      "properties": [
+        {
+          "name": "timeUnit",
+          "type": "TimeUnit",
+          "isAttr": true
+        },
+        {
+          "name": "distribution",
+          "type": "Distribution"
+        }
+      ]
+    },
+    {
+      "name": "setUpDuration",
+      "superClass": ["duration"]
+    },
+    {
+      "name": "Distribution",
+      "isAbstract": true
+    },
+    {
+      "name": "binomialDistribution",
+      "superClass": ["Distribution"],
+      "properties": [
+        { "name": "probability", "type": "probability" },
+        { "name": "amount", "type": "amount" }
+      ]
+    },
+    {
+      "name": "normalDistribution",
+      "superClass": ["Distribution"],
+      "properties": [
+        { "name": "mean", "type": "mean" },
+        { "name": "standardDeviation", "type": "standardDeviation" }
+      ]
+    },
+    {
+      "name": "triangularDistribution",
+      "superClass": ["Distribution"],
+      "properties": [
+        { "name": "lower", "type": "lower" },
+        { "name": "peak", "type": "peak" },
+        { "name": "upper", "type": "upper" }
+      ]
+    },
+    {
+      "name": "constantDistribution",
+      "superClass": ["Distribution"],
+      "properties": [{ "name": "constantValue", "type": "constantValue" }]
+    },
+    {
+      "name": "erlangDistribution",
+      "superClass": ["Distribution"],
+      "properties": [
+        { "name": "order", "type": "order" },
+        { "name": "mean", "type": "mean" }
+      ]
+    },
+    {
+      "name": "arbitraryFiniteProbabilityDistribution",
+      "superClass": ["Distribution"],
+      "properties": [{ "name": "entry", "type": "entry", "isMany": true }]
+    },
+    {
+      "name": "uniformDistribution",
+      "superClass": ["Distribution"],
+      "properties": [
+        { "name": "lower", "type": "lower" },
+        { "name": "upper", "type": "upper" }
+      ]
+    },
+    {
+      "name": "exponentialDistribution",
+      "superClass": ["Distribution"],
+      "properties": [{ "name": "mean", "type": "mean" }]
+    },
+    {
+      "name": "poissonDistribution",
+      "superClass": ["Distribution"],
+      "properties": [{ "name": "mean", "type": "mean" }]
+    },
+    {
+      "name": "Value",
+      "isAbstract": true,
+      "properties": [{ "name": "value", "type": "Number", "isBody": true }]
+    },
+    { "name": "probability", "superClass": ["Value"] },
+    { "name": "standardDeviation", "superClass": ["Value"] },
+    { "name": "amount", "superClass": ["Value"] },
+    { "name": "mean", "superClass": ["Value"] },
+    { "name": "order", "superClass": ["Value"] },
+    { "name": "lower", "superClass": ["Value"] },
+    { "name": "upper", "superClass": ["Value"] },
+    { "name": "peak", "superClass": ["Value"] },
+    { "name": "constantValue", "superClass": ["Value"] },
+    {
+      "name": "entry",
+      "properties": [
+        { "name": "value", "type": "Number", "isAttr": true },
+        { "name": "frequency", "type": "Number", "isAttr": true }
+      ]
+    }
+  ],
+  "enumerations": [
+    {
+      "name": "TimeUnit",
+      "literalValues": [
+        { "name": "HOURS" },
+        { "name": "MINUTES" },
+        { "name": "DAYS" },
+        { "name": "SECONDS" },
+        { "name": "MICROSECONDS" },
+        { "name": "MILLISECONDS" },
+        { "name": "NANOSECONDS" }
+      ]
+    },
+    {
+      "name": "DayOfWeek",
+      "literalValues": [
+        { "name": "FRIDAY" },
+        { "name": "MONDAY" },
+        { "name": "SATURDAY" },
+        { "name": "SUNDAY" },
+        { "name": "THURSDAY" },
+        { "name": "TUESDAY" },
+        { "name": "WEDNESDAY" }
+      ]
+    }
+  ]
+}

@@ -1,22 +1,20 @@
-# camunda-bpmn-moddle
+# bsim-bpmn-moddle
 
-[![Build Status](https://travis-ci.com/camunda/camunda-bpmn-moddle.svg)](https://travis-ci.com/camunda/camunda-bpmn-moddle)
-
-This project defines the [Camunda](https://camunda.org) namespace extensions for BPMN 2.0 as a [moddle](https://github.com/bpmn-io/moddle) descriptor.
+This project defines the [BSIM](https://camunda.org) namespace extensions for BPMN 2.0 as a [moddle](https://github.com/bpmn-io/moddle) descriptor.
 
 
 ## Usage
 
-Use it together with [bpmn-moddle](https://github.com/bpmn-io/bpmn-moddle) to validate Camunda BPMN 2.0 extensions.
+Use it together with [bpmn-moddle](https://github.com/bpmn-io/bpmn-moddle) to validate BSIM BPMN 2.0 extensions.
 
 ```javascript
 var BpmnModdle = require('bpmn-moddle');
 
-var camundaModdle = require('camunda-bpmn-moddle/resources/camunda');
+var bsimModdle = require('bsim-bpmn-moddle/resources/camunbsimda');
 
-var moddle = new BpmnModdle({ camunda: camundaModdle });
+var moddle = new BpmnModdle({ bsim: bsimModdle });
 
-var serviceTask = moddle.create('bpmn:ServiceTask', {
+var serviceTask = moddle.create('bsim:simulationConfiguration', {
   'javaDelegate': 'my.company.SomeDelegate'
 });
 ```
@@ -44,8 +42,8 @@ We include an extension that makes [bpmn-js](https://github.com/bpmn-io/bpmn-js)
 
 ```js
 var BpmnJS = require('bpmn-js/lib/Modeler'),
-    camundaExtensionModule = require('camunda-bpmn-moddle/lib'),
-    camundaModdle = require('camunda-bpmn-moddle/resources/camunda');
+    camundaExtensionModule = require('bsim-bpmn-moddle/lib'),
+    camundaModdle = require('bsim-bpmn-moddle/resources/camunda');
 
 var modeler = new BpmnJS({
     additionalModules: [

@@ -1,5 +1,5 @@
 {
-  "name": "camunda-bpmn-moddle",
+  "name": "bsim-bpmn-moddle",
   "version": "4.4.0",
   "description": "Camunda moddle extensions for BPMN 2.0",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/camunda/camunda-bpmn-moddle"
+    "url": "https://github.com/dtdi/bsim-bpmn-moddle"
   },
   "keywords": [
     "bpmn",

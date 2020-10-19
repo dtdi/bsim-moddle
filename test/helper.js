@@ -1,22 +1,22 @@
-'use strict';
+"use strict";
 
-var fs = require('fs');
-
+var fs = require("fs");
 
 function readFile(filename) {
-  return fs.readFileSync(filename, { encoding: 'UTF-8' });
+  return fs.readFileSync(filename, { encoding: "UTF-8" });
 }
 
 module.exports.readFile = readFile;
 
+var BpmnModdle = require("bpmn-moddle");
 
-var BpmnModdle = require('bpmn-moddle');
-
-var camundaDescriptor = require('../resources/camunda');
+var bsimDescriptor = require("../resources/bsim");
+var camundaDescriptor = require("../resources/camunda");
 
 function createModdle() {
   return new BpmnModdle({
-    camunda: camundaDescriptor
+    camunda: camundaDescriptor,
+    bsim: bsimDescriptor,
   });
 }
 
