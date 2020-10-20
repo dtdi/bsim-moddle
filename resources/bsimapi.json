@@ -1,0 +1,197 @@
+{
+  "name": "BSIMAPI",
+  "uri": "http://github.com/dtdi/bsimapi",
+  "prefix": "bsimapi",
+  "associations": [], 
+  "types": [
+    {
+      "name": "Base",
+      "superClass": ["bpmn:Base"]
+    },
+    {
+      "name": "resourceUtilization",
+      "extends": ["bpmn:Definitions"],
+      "properties": [
+        {
+          "name": "configuration",
+          "type": "configuration"
+        },
+        {
+          "name": "processes",
+          "type": "processes"
+        },
+        {
+          "name": "resources",
+          "type": "resources"
+        }
+      ]
+    },
+    {
+      "name": "configuration",
+      "superClass": ["bpmn:RootElement"],
+      "properties": [
+        { "name": "time_unit", "type": "TimeUnit", "isBody": true }
+      ]
+    },
+    {
+      "name": "processes",
+      "superClass": ["bpmn:RootElement"],
+      "properties": [
+        {
+          "name": "process",
+          "type": "process",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "process",
+      "properties": [
+        {
+          "name": "id",
+          "type": "String",
+          "isBody": true
+        },
+        {
+          "name": "cost",
+          "type": "KPI"
+        },
+        {
+          "name": "time",
+          "type": "Times"
+        },
+        {
+          "name": "instances",
+          "type": "instances"
+        },
+        {
+          "name": "activities",
+          "type": "activities"
+        }
+      ]
+    },
+    {
+      "name": "instances",
+      "properties": [
+        {
+          "name": "instance",
+          "type": "instance",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "activities",
+      "properties": [
+        {
+          "name": "activity",
+          "type": "activity",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "instance",
+      "properties": [
+        { "name": "id", "type": "String"}, 
+        { "name": "costs", "type": "String" },
+        { "name": "cost", "type": "String" },
+        { "name": "time", "type": "time" }
+      ]
+    },
+    {
+      "name": "activity",
+      "properties": [
+        { "name": "id", "type": "String" },
+        { "name": "name", "type": "String" },
+        { "name": "cost", "type": "cost" },
+        { "name": "time", "type": "Times" },
+        { "name": "instances", "type": "instances" }
+      ]
+    },
+    {
+      "name": "time",
+      "properties": [
+        { "name": "duration", "type": "String", "isBody": true },
+        { "name": "effective", "type": "String", "isBody": true },
+        { "name": "waiting", "type": "String", "isBody": true },
+        { "name": "offTime", "type": "String", "isBody": true },
+        { "name": "resources_idle", "type": "String", "isBody": true },
+        { "name": "in_use", "type": "String", "isBody": true },
+        { "name": "available", "type": "String", "isBody": true },
+        { "name": "workload", "type": "String", "isBody": true }
+      ]
+    },
+    {
+      "name": "resources",
+      "superClass": ["bpmn:RootElement"],
+      "properties": [
+        {
+          "name": "resource",
+          "type": "resource",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "resource",
+      "properties": [
+        { "name": "type", "type": "String" },
+        { "name": "cost", "type": "cost" },
+        { "name": "time", "type": "Times" },
+        { "name": "instances", "type": "instances" }
+      ]
+    },
+    { "name": "cost", "superClass": ["KPI"] },
+
+    {
+      "name": "Times",
+      "properties": [
+        { "name": "flow_time", "type": "Time" },
+        { "name": "effective", "type": "Time" },
+        { "name": "waiting", "type": "Time" },
+        { "name": "off_timetable", "type": "Time" },
+
+        { "name": "in_use", "type": "Time" },
+        { "name": "available", "type": "Time" },
+        { "name": "workload", "type": "Time" },
+
+        { "name": "duration", "type": "Time" },
+        { "name": "resources_idle", "type": "Time" }
+      ]
+    },
+    { "name": "Time", "isAbstract": true, "superClass": ["KPI"] },
+
+    { "name": "flow_time", "superClass": ["Time"] },
+    { "name": "effective", "superClass": ["Time"] },
+    { "name": "waiting", "superClass": ["Time"] },
+    { "name": "off_timetable", "superClass": ["Time"] },
+    {
+      "name": "KPI",
+      "isAbstract": true,
+      "properties": [
+        { "name": "min", "type": "String", "isBody": true },
+        { "name": "max", "type": "String", "isBody": true },
+        { "name": "median", "type": "String", "isBody": true },
+        { "name": "Q1", "type": "String", "isBody": true },
+        { "name": "Q3", "type": "String", "isBody": true },
+        { "name": "avg", "type": "String", "isBody": true },
+        { "name": "total", "type": "String", "isBody": true }
+      ]
+    }
+  ],
+  "enumerations": [
+    {
+      "name": "TimeUnit",
+      "literalValues": [
+        { "name": "HOURS" },
+        { "name": "MINUTES" },
+        { "name": "DAYS" },
+        { "name": "SECONDS" },
+        { "name": "MICROSECONDS" },
+        { "name": "MILLISECONDS" },
+        { "name": "NANOSECONDS" }
+      ]
+    }
+  ]
+}

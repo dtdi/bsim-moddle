@@ -2,24 +2,17 @@
   "name": "CONFIGURATION",
   "uri": "http://bsim.hpi.uni-potsdam.de/scylla/simModel",
   "prefix": "bsim",
-  "xml": {
-    "tagAlias": "lowerCase"
-  },
   "associations": [],
   "types": [
     {
+      "name": "Base",
+      "superClass": ["bpmn:Base"]
+    },
+    {
       "name": "definitions",
+      "extends": ["bpmn:Definitions"],
       "properties": [
-        {
-          "name": "targetNamespace",
-          "isAttr": true,
-          "type": "String"
-        },
-        {
-          "name": "expressionLanguage",
-          "isAttr": true,
-          "type": "String"
-        },
+        
         {
           "name": "simulationConfiguration",
           "type": "simulationConfiguration",
@@ -29,6 +22,8 @@
     },
     {
       "name": "globalConfiguration",
+      "superClass": ["bpmn:BaseElement"],
+      "extends": ["bpmn:Definitions"],
       "meta": {
         "displayName": "Global Configuration"
       },
@@ -38,6 +33,7 @@
           "type": "String",
           "isAttr": true,
           "isId": true,
+          "redefines": "bpmn:BaseElement#bpmn:id",
           "meta": {
             "displayName": "ID"
           }
@@ -51,22 +47,12 @@
           "type": "String"
         },
         {
-          "name": "targetNamespace",
-          "isAttr": true,
-          "type": "String"
-        },
-        {
           "name": "timetables",
           "type": "timetables"
         },
         {
           "name": "resourceData",
           "type": "resourceData"
-        },
-        {
-          "name": "expressionLanguage",
-          "isAttr": true,
-          "type": "String"
         },
         {
           "name": "resourceAssignmentOrder",
@@ -77,10 +63,12 @@
     },
     {
       "name": "simulationConfiguration",
+      "superClass": ["bpmn:RootElement"],
       "properties": [
         {
           "name": "id",
           "type": "String",
+          "redefines": "bpmn:BaseElement#bpmn:id",
           "isAttr": true,
           "isId": true,
           "meta": {
@@ -221,6 +209,10 @@
           "type": "setUpDuration"
         }
       ]
+    },
+    {
+      "name": "Task",
+      "superClass": ["task"]
     },
     {
       "name": "resourceAssignmentOrder",
