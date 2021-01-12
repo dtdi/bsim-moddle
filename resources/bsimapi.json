@@ -30,7 +30,7 @@
       "name": "configuration",
       "superClass": ["bpmn:RootElement"],
       "properties": [
-        { "name": "time_unit", "type": "TimeUnit", "isBody": true }
+        { "name": "time_unit", "type": "String", "isBody": true }
       ]
     },
     {
@@ -49,8 +49,12 @@
       "properties": [
         {
           "name": "id",
-          "type": "String",
-          "isBody": true
+          "isBody": true,
+          "isReference": true,
+          "type": "bpmn:BaseElement",
+          "isVirtual": true,
+          "isReadOnly": true,
+          "isId": true
         },
         {
           "name": "cost",
@@ -103,7 +107,8 @@
       "name": "activity",
       "properties": [
         { "name": "id", "type": "String" },
-        { "name": "name", "type": "String" },
+        { "name": "name", "isReference": true,
+          "type": "bsim:task" },
         { "name": "cost", "type": "cost" },
         { "name": "time", "type": "Times" },
         { "name": "instances", "type": "instances" }
@@ -136,7 +141,8 @@
     {
       "name": "resource",
       "properties": [
-        { "name": "type", "type": "String" },
+        { "name": "type", "isReference": true,
+          "type": "bsim:dynamicResource" },
         { "name": "cost", "type": "cost" },
         { "name": "time", "type": "Times" },
         { "name": "instances", "type": "instances" }

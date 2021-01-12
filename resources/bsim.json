@@ -38,9 +38,11 @@
             "displayName": "ID"
           }
         },
+
         {
           "name": "randomSeed",
-          "type": "Integer"
+          "type": "Integer",
+          "isBody": true
         },
         {
           "name": "zoneOffset",
@@ -77,12 +79,24 @@
         },
         {
           "name": "processRef",
-          "type": "bpmn:Process",
+          "isReference": true,
+          "type": "bpmn:BaseElement",
           "isAttr": true,
+          "isVirtual": true,
+          "isReadOnly": true,
           "meta": {
             "displayName": "Referenced Process Id"
           }
         },
+
+        {
+          "name": "bpmnElement",
+          "isAttr": true,
+          "isReference": true,
+          "isVirtual": true,
+          "type": "bpmn:BaseElement"
+        },
+
         {
           "name": "processInstances",
           "type": "Integer",
@@ -128,8 +142,9 @@
       "properties": [
         {
           "name": "id",
-          "type": "String",
-          "isAttr": true
+          "isAttr": true,
+          "isReference": true,
+          "type": "bpmn:BaseElement"
         }
       ]
     },
@@ -149,7 +164,7 @@
       "properties": [
         {
           "name": "arrivalRate",
-          "type": "ArrivalRate"
+          "type": "arrivalRate"
         }
       ]
     },
@@ -159,26 +174,27 @@
       "properties": [
         {
           "name": "outgoingSequenceFlow",
-          "type": "OutgoingSequenceFlow",
+          "type": "outgoingSequenceFlow",
           "isMany": true
         }
       ]
     },
     {
-      "name": "OutgoingSequenceFlow",
+      "name": "outgoingSequenceFlow",
       "properties": [
         {
           "name": "id",
-          "type": "String"
+          "type": "String",
+          "isAttr": true
         },
         {
           "name": "branchingProbability",
-          "type": "BranchingProbability"
+          "type": "branchingProbability"
         }
       ]
     },
     {
-      "name": "BranchingProbability",
+      "name": "branchingProbability",
       "properties": [
         {
           "name": "value",
@@ -225,7 +241,7 @@
       ]
     },
     {
-      "name": "ArrivalRate",
+      "name": "arrivalRate",
       "properties": [
         {
           "name": "timeUnit",
@@ -274,7 +290,8 @@
         {
           "name": "id",
           "type": "String",
-          "isAttr": true
+          "isAttr": true,
+          "isId": true
         },
         {
           "name": "timetableItem",
@@ -289,7 +306,8 @@
         {
           "name": "id",
           "type": "String",
-          "isAttr": true
+          "isAttr": true,
+          "isId": true
         },
         {
           "name": "name",
@@ -303,7 +321,8 @@
         },
         {
           "name": "defaultTimetableId",
-          "type": "bsim:timetable",
+          "type": "timetable",
+          "isReference:": true,
           "isAttr": true
         },
         {
@@ -318,7 +337,8 @@
         },
         {
           "name": "instances",
-          "type": "instance"
+          "type": "instance",
+          "isMany": true
         }
       ]
     },
@@ -348,8 +368,9 @@
       "properties": [
         {
           "name": "id",
-          "type": "String",
-          "isAttr": true
+          "type": "bsim:dynamicResource",
+          "isAttr": true,
+          "isReference": true
         },
         {
           "name": "amount",
@@ -359,11 +380,6 @@
         {
           "name": "assignmentDefinition",
           "type": "assignmentDefinition"
-        },
-        {
-          "name": "dynamicResource",
-          "type": "bsim:dynamicResource",
-          "isReference": true
         }
       ]
     },
@@ -429,7 +445,7 @@
       "name": "normalDistribution",
       "superClass": ["Distribution"],
       "properties": [
-        { "name": "mean", "type": "mean" },
+        { "name": "mean", "type": "mean", "isBody": true },
         { "name": "standardDeviation", "type": "standardDeviation" }
       ]
     },
