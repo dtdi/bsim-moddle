@@ -16,7 +16,10 @@
         {
           "name": "simulationConfiguration",
           "type": "simulationConfiguration",
-          "isMany": true
+          "isMany": true,
+          "meta": {
+            "displayName": "Simulation Configuration"
+          }
         }
       ]
     },
@@ -42,24 +45,39 @@
         {
           "name": "randomSeed",
           "type": "Integer",
-          "isBody": true
+          "isBody": true,
+          "meta": {
+            "displayName": "Random Seed"
+          }
         },
         {
           "name": "zoneOffset",
-          "type": "String"
+          "type": "String",
+          "meta": {
+            "displayName": "Timezone Offset"
+          }
         },
         {
           "name": "timetables",
-          "type": "timetables"
+          "type": "timetables",
+          "meta": {
+            "displayName": "Resource Timetables"
+          }
         },
         {
           "name": "resourceData",
-          "type": "resourceData"
+          "type": "resourceData",
+          "meta": {
+            "displayName": "Resource Data"
+          }
         },
         {
           "name": "resourceAssignmentOrder",
           "type": "resourceAssignmentOrder",
-          "isMany": true
+          "isMany": true,
+          "meta": {
+            "displayName": "Resource Assignment Order"
+          }
         }
       ]
     },
@@ -82,8 +100,7 @@
           "isReference": true,
           "type": "bpmn:BaseElement",
           "isAttr": true,
-          "isVirtual": true,
-          "isReadOnly": true,
+          
           "meta": {
             "displayName": "Referenced Process Id"
           }
@@ -102,37 +119,55 @@
           "type": "Integer",
           "isAttr": true,
           "meta": {
-            "displayName": "Number of Process Instances"
+            "displayName": "# Process Instances"
           }
         },
         {
           "name": "startDateTime",
           "type": "String",
-          "isAttr": true
+          "isAttr": true,
+          "meta": {
+            "displayName": "Start Date Time"
+          }
         },
         {
           "name": "endDateTime",
           "type": "String",
-          "isAttr": true
+          "isAttr": true,
+          "meta": {
+            "displayName": "End Date Time"
+          }
         },
         {
           "name": "randomSeed",
           "type": "Long",
-          "isAttr": true
+          "isAttr": true,
+          "meta": {
+            "displayName": "Random Seed"
+          }
         },
         {
           "name": "startEvent",
-          "type": "startEvent"
+          "type": "startEvent",
+          "meta": {
+            "displayName": "Start Event"
+          }
         },
         {
           "name": "tasks",
           "type": "task",
-          "isMany": true
+          "isMany": true,
+          "meta": {
+            "displayName": "Tasks"
+          }
         },
         {
           "name": "gateways",
           "type": "Gateway",
-          "isMany": true
+          "isMany": true,
+          "meta": {
+            "displayName": "Gateways"
+          }
         }
       ]
     },
@@ -307,7 +342,10 @@
           "name": "id",
           "type": "String",
           "isAttr": true,
-          "isId": true
+          "isId": true,
+          "meta": {
+            "displayName": "Resource ID"
+          }
         },
         {
           "name": "name",
@@ -461,7 +499,8 @@
     {
       "name": "constantDistribution",
       "superClass": ["Distribution"],
-      "properties": [{ "name": "constantValue", "type": "constantValue" }]
+      "properties": [{ "name": "constantValue", "type": "constantValue", "meta": {"displayName": "Constant Value"} }]
+      
     },
     {
       "name": "erlangDistribution",

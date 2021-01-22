@@ -14,15 +14,18 @@
       "properties": [
         {
           "name": "configuration",
-          "type": "configuration"
+          "type": "configuration",
+          "isVirtual": true
         },
         {
           "name": "processes",
-          "type": "processes"
+          "type": "processes",
+          "isVirtual": true
         },
         {
           "name": "resources",
-          "type": "resources"
+          "type": "resources",
+          "isVirtual": true
         }
       ]
     },
