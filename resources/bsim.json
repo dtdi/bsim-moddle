@@ -45,7 +45,7 @@
         {
           "name": "randomSeed",
           "type": "Integer",
-          "isBody": true,
+          
           "meta": {
             "displayName": "Random Seed"
           }

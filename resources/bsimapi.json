@@ -14,18 +14,15 @@
       "properties": [
         {
           "name": "configuration",
-          "type": "configuration",
-          "isVirtual": true
+          "type": "configuration"
         },
         {
           "name": "processes",
-          "type": "processes",
-          "isVirtual": true
+          "type": "processes"
         },
         {
           "name": "resources",
-          "type": "resources",
-          "isVirtual": true
+          "type": "resources"
         }
       ]
     },
@@ -52,16 +49,13 @@
       "properties": [
         {
           "name": "id",
-          "isBody": true,
           "isReference": true,
           "type": "bpmn:BaseElement",
-          "isVirtual": true,
-          "isReadOnly": true,
           "isId": true
         },
         {
           "name": "cost",
-          "type": "KPI"
+          "type": "cost"
         },
         {
           "name": "time",
@@ -120,14 +114,14 @@
     {
       "name": "time",
       "properties": [
-        { "name": "duration", "type": "String", "isBody": true },
-        { "name": "effective", "type": "String", "isBody": true },
-        { "name": "waiting", "type": "String", "isBody": true },
-        { "name": "offTime", "type": "String", "isBody": true },
-        { "name": "resources_idle", "type": "String", "isBody": true },
-        { "name": "in_use", "type": "String", "isBody": true },
-        { "name": "available", "type": "String", "isBody": true },
-        { "name": "workload", "type": "String", "isBody": true }
+        { "name": "duration", "type": "String" },
+        { "name": "effective", "type": "String" },
+        { "name": "waiting", "type": "String" },
+        { "name": "offTime", "type": "String" },
+        { "name": "resources_idle", "type": "String" },
+        { "name": "in_use", "type": "String" },
+        { "name": "available", "type": "String" },
+        { "name": "workload", "type": "String" }
       ]
     },
     {
@@ -177,15 +171,14 @@
     { "name": "off_timetable", "superClass": ["Time"] },
     {
       "name": "KPI",
-      "isAbstract": true,
       "properties": [
-        { "name": "min", "type": "String", "isBody": true },
-        { "name": "max", "type": "String", "isBody": true },
-        { "name": "median", "type": "String", "isBody": true },
-        { "name": "Q1", "type": "String", "isBody": true },
-        { "name": "Q3", "type": "String", "isBody": true },
-        { "name": "avg", "type": "String", "isBody": true },
-        { "name": "total", "type": "String", "isBody": true }
+        { "name": "min", "type": "String" },
+        { "name": "max", "type": "String" },
+        { "name": "median", "type": "String" },
+        { "name": "Q1", "type": "String" },
+        { "name": "Q3", "type": "String" },
+        { "name": "avg", "type": "String" },
+        { "name": "total", "type": "String" }
       ]
     }
   ],
