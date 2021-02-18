@@ -219,8 +219,10 @@
       "properties": [
         {
           "name": "id",
-          "type": "String",
-          "isAttr": true
+          
+          "isAttr": true,
+          "isReference": true,
+          "type": "bpmn:sequenceFlow"
         },
         {
           "name": "branchingProbability",
