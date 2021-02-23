@@ -6,6 +6,23 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 5.0.0
+
+* `CHORE`: rename `*EventDefinition` to `*EventDefinitionExtension`
+* `FEAT`: support `camunda:ErrorEventDefinition` for external service tasks
+
+### Breaking Changes
+
+* `*EventDefinition` elements were re-named by appending `Extension`. Adjust the name of these elements, if you extended or superclassed them. 
+
+## 4.5.0
+
+* `FIX`: add `modelerTemplateVersion` property ([#60](https://github.com/camunda/camunda-bpmn-moddle/pull/60))
+
+## 4.4.1
+
+* `FIX`: rename `variableEvent` to `variableEvents` ([`cd4a417`](https://github.com/camunda/camunda-bpmn-moddle/commit/cd4a417c1ee7831646f896d2360854aee7ee1ad3))
+
 ## 4.4.0
 
 * `FEAT`: copy [`camunda:in`](https://docs.camunda.org/manual/7.12/reference/bpmn20/custom-extensions/extension-elements/#in) on signal throw events ([#54](https://github.com/camunda/camunda-bpmn-moddle/pull/54))
