@@ -73,8 +73,7 @@
         },
         {
           "name": "resourceAssignmentOrder",
-          "type": "resourceAssignmentOrder",
-          "isMany": true,
+          "type": "String",
           "meta": {
             "displayName": "Resource Assignment Order"
           }
@@ -162,6 +161,22 @@
           }
         },
         {
+          "name": "dataObjects",
+          "type": "dataObject",
+          "isMany": true,
+          "meta": {
+            "displayName": "Data Objects"
+          }
+        },
+        {
+          "name": "subProcesses",
+          "type": "subProcess",
+          "isMany": true,
+          "meta": {
+            "displayName": "Sub Processes"
+          }
+        },
+        {
           "name": "gateways",
           "type": "Gateway",
           "isMany": true,
@@ -194,14 +209,12 @@
       "isAbstract": true
     },
     {
+      "name": "subProcess",
+      "superClass": ["simulationConfiguration"]
+    },
+    {
       "name": "startEvent",
-      "superClass": ["RootElement"],
-      "properties": [
-        {
-          "name": "arrivalRate",
-          "type": "arrivalRate"
-        }
-      ]
+      "superClass": ["Event"]
     },
     {
       "name": "exclusiveGateway",
@@ -260,6 +273,10 @@
         {
           "name": "setUpDuration",
           "type": "setUpDuration"
+        },
+        {
+          "name": "boundaryEvents",
+          "type": "boundaryEvents"
         }
       ]
     },
@@ -267,16 +284,37 @@
       "name": "Task",
       "superClass": ["task"]
     },
+
     {
-      "name": "resourceAssignmentOrder",
+      "name": "Event",
+      "superClass": ["RootElement"],
       "properties": [
         {
-          "name": "value",
-          "type": "String",
-          "isBody": true
+          "name": "arrivalRate",
+          "type": "arrivalRate"
         }
       ]
     },
+
+    
+
+    {
+      "name": "boundaryEvent",
+      "superClass": ["Event"],
+      "properties": [
+        
+        {
+          "name": "eventProbability",
+          "type": "String"
+        }
+      ]
+    },
+
+    {
+      "name": "catchEvent",
+      "superClass": ["Event"]
+    },
+    
     {
       "name": "arrivalRate",
       "properties": [
@@ -297,6 +335,16 @@
         {
           "name": "resource",
           "type": "resource",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "boundaryEvents",
+      "properties": [
+        {
+          "name": "boundaryEvent",
+          "type": "boundaryEvent",
           "isMany": true
         }
       ]
@@ -451,6 +499,40 @@
         }
       ]
     },
+
+
+    {
+      "name": "dataObject",
+      "properties": [
+        
+        {
+          "name": "fields",
+          "type": "field",
+          "isMany": true
+        }
+      ]
+    },
+
+    {
+      "name": "field",
+      "properties": [
+        {
+          "name": "name",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "type",
+          "type": "Type",
+          "isAttr": true
+        },
+        {
+          "name": "distribution",
+          "type": "Distribution"
+        }
+      ]
+    },
+
     {
       "name": "duration",
       "properties": [
@@ -568,6 +650,15 @@
         { "name": "MICROSECONDS" },
         { "name": "MILLISECONDS" },
         { "name": "NANOSECONDS" }
+      ]
+    },
+    {
+      "name": "Type",
+      "literalValues": [
+        { "name": "long" },
+        { "name": "double" },
+        { "name": "string" },
+        { "name": "boolean" }
       ]
     },
     {
