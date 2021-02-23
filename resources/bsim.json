@@ -169,6 +169,14 @@
           }
         },
         {
+          "name": "events",
+          "type": "catchEvent",
+          "isMany": true,
+          "meta": {
+            "displayName": "Events"
+          }
+        },
+        {
           "name": "subProcesses",
           "type": "subProcess",
           "isMany": true,
@@ -289,6 +297,7 @@
       "name": "Event",
       "superClass": ["RootElement"],
       "properties": [
+        
         {
           "name": "arrivalRate",
           "type": "arrivalRate"
@@ -302,7 +311,11 @@
       "name": "boundaryEvent",
       "superClass": ["Event"],
       "properties": [
-        
+        {
+          "name": "name",
+          "type": "String",
+          "isAttr": true
+        },
         {
           "name": "eventProbability",
           "type": "String"
@@ -313,6 +326,8 @@
     {
       "name": "catchEvent",
       "superClass": ["Event"]
+      
+
     },
     
     {
