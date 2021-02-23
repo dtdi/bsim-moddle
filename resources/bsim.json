@@ -229,7 +229,7 @@
       "superClass": ["Gateway"],
       "properties": [
         {
-          "name": "outgoingSequenceFlow",
+          "name": "outgoing",
           "type": "outgoingSequenceFlow",
           "isMany": true
         }
@@ -285,6 +285,7 @@
         {
           "name": "boundaryEvents",
           "type": "boundaryEvents"
+          
         }
       ]
     },
@@ -518,7 +519,13 @@
 
     {
       "name": "dataObject",
+      "superClass": ["RootElement"],
       "properties": [
+        {
+          "name": "name",
+          "type": "String",
+          "isAttr": true
+        },
         
         {
           "name": "fields",
