@@ -311,6 +311,11 @@
     {
       "name": "boundaryEvent",
       "superClass": ["Event"],
+      "meta": {
+        "displayName": "Boundary Event",
+        "description": "Each BPMN boundary event belongs to one task. The boundary event will be scheduled by his given event probability after its arrival rate if the scheduling time is smaller or equal to the end of the task. ",
+        "src": "https://github.com/bptlab/scylla/wiki/BoundaryEvent-Plugin"
+      },
       "properties": [
         {
           "name": "name",
@@ -319,7 +324,12 @@
         },
         {
           "name": "eventProbability",
-          "type": "String"
+          "type": "String",
+          "meta": {
+            "displayName": "Event Probability",
+            "description": "Normally the eventProbability should always be 1, except you have very special claims and you can not regulate it by choosing or modifying the distribution for this boundary event.",
+            "src": "https://github.com/bptlab/scylla/wiki/BoundaryEvent-Plugin"
+          }
         }
       ]
     },
@@ -557,6 +567,11 @@
 
     {
       "name": "duration",
+      "meta": {
+        "displayName": "Distribution",
+        "description": "Describes how long the task takes.",
+        "src": "https://github.com/bptlab/scylla/wiki/Simulation-Configuration"
+      },
       "properties": [
         {
           "name": "timeUnit",
@@ -575,7 +590,12 @@
     },
     {
       "name": "Distribution",
-      "isAbstract": true
+      "isAbstract": true,
+      "meta": {
+        "displayName": "Distribution",
+        "description": "As the simulation is based on randomness, distributions are used to model it.",
+        "src": "https://github.com/bptlab/scylla/wiki/Simulation-Configuration"
+      }
     },
     {
       "name": "binomialDistribution",
@@ -589,7 +609,7 @@
       "name": "normalDistribution",
       "superClass": ["Distribution"],
       "properties": [
-        { "name": "mean", "type": "mean", "isBody": true },
+        { "name": "mean", "type": "mean" },
         { "name": "standardDeviation", "type": "standardDeviation" }
       ]
     },
@@ -656,7 +676,7 @@
     {
       "name": "entry",
       "properties": [
-        { "name": "value", "type": "Number", "isAttr": true },
+        { "name": "value", "type": "String", "isAttr": true },
         { "name": "frequency", "type": "Number", "isAttr": true }
       ]
     }
