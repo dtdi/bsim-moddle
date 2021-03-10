@@ -9,10 +9,32 @@
       "superClass": ["bpmn:Base"]
     },
     {
+      "name": "ConfigBaseElement",
+      "extends": ["bpmn:BaseElement"],
+      "properties": [{ "name": "config", "isMany": true, "type": "config" }]
+    },
+    {
+      "name": "config",
+      "superClass": ["bpmn:BaseElement"],
+      "properties": [
+        { "name": "key", "isAttr": true, "type": "String" },
+        {
+          "name": "value",
+          "type": "String",
+          "isBody": true
+        },
+        {
+          "name": "textFormat",
+          "default": "text/json",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
       "name": "definitions",
       "extends": ["bpmn:Definitions"],
       "properties": [
-        
         {
           "name": "simulationConfiguration",
           "type": "simulationConfiguration",
@@ -45,7 +67,7 @@
         {
           "name": "randomSeed",
           "type": "Integer",
-          
+
           "meta": {
             "displayName": "Random Seed"
           }
@@ -99,7 +121,7 @@
           "isReference": true,
           "type": "bpmn:BaseElement",
           "isAttr": true,
-          
+
           "meta": {
             "displayName": "Referenced Process Id"
           }
@@ -203,7 +225,8 @@
           "isAttr": true,
           "isReference": true,
           "type": "bpmn:BaseElement"
-        }
+        },
+        { "name": "config", "isMany": true, "type": "config" }
       ]
     },
     {
@@ -240,7 +263,7 @@
       "properties": [
         {
           "name": "id",
-          
+
           "isAttr": true,
           "isReference": true,
           "type": "bpmn:sequenceFlow"
@@ -285,7 +308,6 @@
         {
           "name": "boundaryEvents",
           "type": "boundaryEvents"
-          
         }
       ]
     },
@@ -298,15 +320,12 @@
       "name": "Event",
       "superClass": ["RootElement"],
       "properties": [
-        
         {
           "name": "arrivalRate",
           "type": "arrivalRate"
         }
       ]
     },
-
-    
 
     {
       "name": "boundaryEvent",
@@ -337,10 +356,8 @@
     {
       "name": "catchEvent",
       "superClass": ["Event"]
-      
-
     },
-    
+
     {
       "name": "arrivalRate",
       "properties": [
@@ -526,7 +543,6 @@
       ]
     },
 
-
     {
       "name": "dataObject",
       "superClass": ["RootElement"],
@@ -536,7 +552,7 @@
           "type": "String",
           "isAttr": true
         },
-        
+
         {
           "name": "fields",
           "type": "field",
@@ -625,8 +641,13 @@
     {
       "name": "constantDistribution",
       "superClass": ["Distribution"],
-      "properties": [{ "name": "constantValue", "type": "constantValue", "meta": {"displayName": "Constant Value"} }]
-      
+      "properties": [
+        {
+          "name": "constantValue",
+          "type": "constantValue",
+          "meta": { "displayName": "Constant Value" }
+        }
+      ]
     },
     {
       "name": "erlangDistribution",
