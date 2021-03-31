@@ -1,0 +1,90 @@
+{
+  "name": "ABPR10",
+  "uri": "http://github.com/dtdi/abpr",
+  "prefix": "abpr",
+  "associations": [],
+
+  "types": [
+    {
+      "name": "ConfigBaseElement",
+      "extends": ["bsim:RootElement"],
+      "properties": [
+        {
+          "name": "extensionElements",
+          "type": "bpmn:ExtensionElements"
+        }
+      ]
+    },
+    {
+      "name": "properties",
+      "superClass": ["Element"],
+      "meta": {
+        "allowedIn": ["*"]
+      },
+      "properties": [
+        {
+          "name": "values",
+          "type": "property",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "property",
+      "superClass": ["Element"],
+      "properties": [
+        {
+          "name": "id",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "type",
+          "type": "DataTypes",
+          "isAttr": true
+        },
+        {
+          "name": "related",
+          "isReference": true,
+          "type": "bpmn:BaseElement",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "related",
+      "superClass": ["Element"],
+      "meta": {
+        "allowedIn": ["*"]
+      },
+      "properties": [
+        {
+          "name": "element",
+          "isReference": true,
+          "type": "bpmn:BaseElement",
+          "isMany": true
+        }
+      ]
+    }
+  ],
+  "enumerations": [
+    {
+      "name": "DataTypes",
+      "literalValues": [
+        { "name": "Boolean" },
+        { "name": "String" },
+        { "name": "Number" }
+      ]
+    }
+  ]
+}

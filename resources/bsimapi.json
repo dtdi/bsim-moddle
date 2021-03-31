@@ -104,8 +104,8 @@
       "name": "activity",
       "properties": [
         { "name": "id", "type": "String" },
-        { "name": "name", "isReference": true,
-          "type": "bsim:task" },
+        { "name": "name", "isReference": false,
+          "type": "String" },
         { "name": "cost", "type": "cost" },
         { "name": "time", "type": "Times" },
         { "name": "instances", "type": "instances" }
@@ -138,8 +138,8 @@
     {
       "name": "resource",
       "properties": [
-        { "name": "type", "isReference": true,
-          "type": "bsim:dynamicResource" },
+        { "name": "type",
+          "type": "String" },
         { "name": "cost", "type": "cost" },
         { "name": "time", "type": "Times" },
         { "name": "instances", "type": "instances" }

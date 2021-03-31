@@ -8,29 +8,7 @@
       "name": "Base",
       "superClass": ["bpmn:Base"]
     },
-    {
-      "name": "ConfigBaseElement",
-      "extends": ["bpmn:BaseElement"],
-      "properties": [{ "name": "config", "isMany": true, "type": "config" }]
-    },
-    {
-      "name": "config",
-      "superClass": ["bpmn:BaseElement"],
-      "properties": [
-        { "name": "key", "isAttr": true, "type": "String" },
-        {
-          "name": "value",
-          "type": "String",
-          "isBody": true
-        },
-        {
-          "name": "textFormat",
-          "default": "text/json",
-          "isAttr": true,
-          "type": "String"
-        }
-      ]
-    },
+    
     {
       "name": "definitions",
       "extends": ["bpmn:Definitions"],
@@ -42,17 +20,7 @@
           "meta": {
             "displayName": "Simulation Configuration"
           }
-        }
-      ]
-    },
-    {
-      "name": "globalConfiguration",
-      "superClass": ["bpmn:BaseElement"],
-      "extends": ["bpmn:Definitions"],
-      "meta": {
-        "displayName": "Global Configuration"
-      },
-      "properties": [
+        },
         {
           "name": "id",
           "type": "String",
@@ -225,8 +193,7 @@
           "isAttr": true,
           "isReference": true,
           "type": "bpmn:BaseElement"
-        },
-        { "name": "config", "isMany": true, "type": "config" }
+        }
       ]
     },
     {
@@ -286,6 +253,10 @@
     },
     {
       "name": "task",
+      "meta": {
+        "displayName": "Task",
+        "description": "Task elements define the configuration for a BPMN task."
+      },
       "superClass": ["RootElement"],
       "properties": [
         {
@@ -374,6 +345,9 @@
     },
     {
       "name": "resources",
+      "meta": {
+        "description": "Descibes how many instances of the resource type with the given id are needed to perform the task."
+      },
       "properties": [
         {
           "name": "resource",
@@ -602,6 +576,10 @@
     },
     {
       "name": "setUpDuration",
+      "meta": {
+        "displayName": "Set-Up Duration",
+        "description": "Can be defined, which is similar to the duration element, but describes the setup duration. If not defined, no (setup-) duration or no resources are assumed."
+      },
       "superClass": ["duration"]
     },
     {
