@@ -8,7 +8,7 @@
       "name": "Base",
       "superClass": ["bpmn:Base"]
     },
-    
+
     {
       "name": "definitions",
       "extends": ["bpmn:Definitions"],
@@ -19,16 +19,6 @@
           "isMany": true,
           "meta": {
             "displayName": "Simulation Configuration"
-          }
-        },
-        {
-          "name": "id",
-          "type": "String",
-          "isAttr": true,
-          "isId": true,
-          "redefines": "bpmn:BaseElement#bpmn:id",
-          "meta": {
-            "displayName": "ID"
           }
         },
 
@@ -58,7 +48,8 @@
           "name": "resourceData",
           "type": "resourceData",
           "meta": {
-            "displayName": "Resource Data"
+            "displayName": "Resource Data",
+            "description": "Resource data defines which resources exists, how often they exist, what they cost and optionally which timetables they use and which named instances exist (which can differ from their resource type a bit)."
           }
         },
         {
@@ -108,7 +99,8 @@
           "type": "Integer",
           "isAttr": true,
           "meta": {
-            "displayName": "# Process Instances"
+            "displayName": "# Process Instances",
+            "description": "Number of process instances that should be spawned when starting the simulation"
           }
         },
         {
@@ -124,7 +116,8 @@
           "type": "String",
           "isAttr": true,
           "meta": {
-            "displayName": "End Date Time"
+            "displayName": "End Date Time",
+            "endDateTime": "(Optional) Can be specified, if the simulation should be terminated before all instances finish."
           }
         },
         {
@@ -132,14 +125,16 @@
           "type": "Long",
           "isAttr": true,
           "meta": {
-            "displayName": "Random Seed"
+            "displayName": "Random Seed",
+            "description": "Will determine random elements such as task durations, event arrival rates, gateway branching behavior and more."
           }
         },
         {
           "name": "startEvent",
           "type": "startEvent",
           "meta": {
-            "displayName": "Start Event"
+            "displayName": "Start Event",
+            "description": "Start Events configure the arrival rate of a BPMN start event."
           }
         },
         {
@@ -216,6 +211,10 @@
     },
     {
       "name": "exclusiveGateway",
+      "meta": {
+        "displayName": "Exclusive Gateway",
+        "description": "Exclusive gateways use branching probabilities to model the simulation flow. The probabilities in each of the outgoing sequence flows need to add to 100%."
+      },
       "superClass": ["Gateway"],
       "properties": [
         {
@@ -243,11 +242,18 @@
     },
     {
       "name": "branchingProbability",
+      "meta": {
+        "displayName": "Branching Prob."
+      },
       "properties": [
         {
           "name": "value",
           "type": "Number",
-          "isBody": true
+          "isBody": true,
+          "meta": {
+            "displayName": "Value",
+            "description": "double in [0,1]"
+          }
         }
       ]
     },
@@ -346,7 +352,7 @@
     {
       "name": "resources",
       "meta": {
-        "description": "Descibes how many instances of the resource type with the given id are needed to perform the task."
+        "description": "Descibes how many instances of the resource type with the given id are needed to perform the task. If not defined, no resources are assumed."
       },
       "properties": [
         {
@@ -404,6 +410,9 @@
     },
     {
       "name": "dynamicResource",
+      "meta": {
+        "description": "Define a resource type."
+      },
       "properties": [
         {
           "name": "id",
@@ -411,34 +420,55 @@
           "isAttr": true,
           "isId": true,
           "meta": {
-            "displayName": "Resource ID"
+            "displayName": "Resource ID",
+            "rules": "Alphanum, no space"
           }
         },
         {
           "name": "name",
           "type": "String",
-          "isAttr": true
+          "isAttr": true,
+          "meta": {
+            "displayName": "Name",
+            "description": "(Optional) Nice Name for this resource"
+          }
         },
         {
           "name": "defaultQuantity",
           "type": "Integer",
-          "isAttr": true
+          "isAttr": true,
+          "meta": {
+            "displayName": "Quantity",
+            "description": "How many of this resource are available"
+          }
         },
         {
           "name": "defaultTimetableId",
           "type": "timetable",
           "isReference:": true,
-          "isAttr": true
+          "isAttr": true,
+          "meta": {
+            "displayName": "Timetable",
+            "description": "Availability and working hours."
+          }
         },
         {
           "name": "defaultCost",
           "type": "Real",
-          "isAttr": true
+          "isAttr": true,
+          "meta": {
+            "displayName": "Cost",
+            "description": "Cost per time unit"
+          }
         },
         {
           "name": "defaultTimeUnit",
           "type": "TimeUnit",
-          "isAttr": true
+          "isAttr": true,
+          "meta": {
+            "displayName": "Time Unit",
+            "description": "Time Unit to which the cost applies"
+          }
         },
         {
           "name": "instances",
@@ -449,22 +479,37 @@
     },
     {
       "name": "instance",
+      "meta": {
+        "displayName": "Named Instance",
+        "description": "These represent named instances that might deviate from their resource type."
+      },
       "properties": [
         {
           "name": "name",
           "type": "String",
-          "isAttr": true
+          "isAttr": true,
+          "meta": {
+            "displayName": "Name",
+            "description": "These represent named instances that might deviate from their resource type."
+          }
         },
         {
           "name": "cost",
           "type": "Integer",
-          "isAttr": true
+          "isAttr": true,
+          "meta": {
+            "displayName": "Cost",
+            "description": "Cost per time unit"
+          }
         },
         {
           "name": "timetableId",
           "type": "timetable",
           "isAttr": true,
-          "isReference": true
+          "isReference": true,
+          "meta": {
+            "displayName": "Timetable"
+          }
         }
       ]
     },
@@ -559,7 +604,7 @@
       "name": "duration",
       "meta": {
         "displayName": "Distribution",
-        "description": "Describes how long the task takes.",
+        "description": "Describes how long the task takes. If not defined, no duration is assumed.",
         "src": "https://github.com/bptlab/scylla/wiki/Simulation-Configuration"
       },
       "properties": [
@@ -578,7 +623,7 @@
       "name": "setUpDuration",
       "meta": {
         "displayName": "Set-Up Duration",
-        "description": "Can be defined, which is similar to the duration element, but describes the setup duration. If not defined, no (setup-) duration or no resources are assumed."
+        "description": "Can optionally be defined, works similar to the duration element, but describes the setup duration. If not defined, no setup-duration is assumed."
       },
       "superClass": ["duration"]
     },
@@ -591,8 +636,24 @@
         "src": "https://github.com/bptlab/scylla/wiki/Simulation-Configuration"
       }
     },
+
+    {
+      "name": "DiscreteAndOtherDistribution",
+      "extends": ["bsim:Distribution"],
+      "isAbstract": true,
+      "meta": {
+        "displayName": "Distribution",
+        "description": "As the simulation is based on randomness, distributions are used to model it."
+      }
+    },
+
     {
       "name": "binomialDistribution",
+      "meta": {
+        "displayName": "binomial",
+        "description": "Models a binomial distribution",
+        "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Binomial_distribution"
+      },
       "superClass": ["Distribution"],
       "properties": [
         { "name": "probability", "type": "probability" },
@@ -601,6 +662,11 @@
     },
     {
       "name": "normalDistribution",
+      "meta": {
+        "displayName": "normal",
+        "description": "Models a normal distribution",
+        "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Normal_distribution"
+      },
       "superClass": ["Distribution"],
       "properties": [
         { "name": "mean", "type": "mean" },
@@ -609,6 +675,11 @@
     },
     {
       "name": "triangularDistribution",
+      "meta": {
+        "displayName": "triangular",
+        "description": "Models a triangular distribution",
+        "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Triangular_distribution"
+      },
       "superClass": ["Distribution"],
       "properties": [
         { "name": "lower", "type": "lower" },
@@ -618,17 +689,26 @@
     },
     {
       "name": "constantDistribution",
+      "meta": {
+        "displayName": "constant",
+        "description": "Constantly returns one value"
+      },
       "superClass": ["Distribution"],
       "properties": [
         {
           "name": "constantValue",
           "type": "constantValue",
-          "meta": { "displayName": "Constant Value" }
+          "meta": { "displayName": "constantly returns one value" }
         }
       ]
     },
     {
       "name": "erlangDistribution",
+      "meta": {
+        "displayName": "erlang",
+        "description": "Models an erlang distribution",
+        "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Erlang_distribution"
+      },
       "superClass": ["Distribution"],
       "properties": [
         { "name": "order", "type": "order" },
@@ -637,11 +717,41 @@
     },
     {
       "name": "arbitraryFiniteProbabilityDistribution",
+      "meta": {
+        "displayName": "arbitrary finite",
+        "description": "Models a distribution onto a finite set of elements"
+      },
       "superClass": ["Distribution"],
       "properties": [{ "name": "entry", "type": "entry", "isMany": true }]
     },
+
+    {
+      "name": "discreteProbabilityDistribution",
+      "meta": {
+        "displayName": "discrete probability",
+        "description": "Models a discrete probability distribution"
+      },
+      "superClass": ["DiscreteAndOtherDistribution"],
+      "properties": [{ "name": "entry", "type": "entry", "isMany": true }]
+    },
+
+    {
+      "name": "discreteStringProbabilityDistribution",
+      "meta": {
+        "displayName": "discrete string probability",
+        "description": "Models a discrete string probability distribution"
+      },
+      "superClass": ["DiscreteAndOtherDistribution"],
+      "properties": [{ "name": "entry", "type": "entry", "isMany": true }]
+    },
+
     {
       "name": "uniformDistribution",
+      "meta": {
+        "displayName": "uniform",
+        "description": "Models a uniform distribution",
+        "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Continuous_uniform_distribution"
+      },
       "superClass": ["Distribution"],
       "properties": [
         { "name": "lower", "type": "lower" },
@@ -650,11 +760,21 @@
     },
     {
       "name": "exponentialDistribution",
+      "meta": {
+        "displayName": "exponential",
+        "description": "Models an exponential distribution",
+        "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Exponential_distribution"
+      },
       "superClass": ["Distribution"],
       "properties": [{ "name": "mean", "type": "mean" }]
     },
     {
       "name": "poissonDistribution",
+      "meta": {
+        "displayName": "poisson",
+        "description": "Models a poisson distribution",
+        "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Poisson_distribution"
+      },
       "superClass": ["Distribution"],
       "properties": [{ "name": "mean", "type": "mean" }]
     },
@@ -663,20 +783,99 @@
       "isAbstract": true,
       "properties": [{ "name": "value", "type": "Number", "isBody": true }]
     },
-    { "name": "probability", "superClass": ["Value"] },
-    { "name": "standardDeviation", "superClass": ["Value"] },
-    { "name": "amount", "superClass": ["Value"] },
-    { "name": "mean", "superClass": ["Value"] },
-    { "name": "order", "superClass": ["Value"] },
-    { "name": "lower", "superClass": ["Value"] },
-    { "name": "upper", "superClass": ["Value"] },
-    { "name": "peak", "superClass": ["Value"] },
-    { "name": "constantValue", "superClass": ["Value"] },
+    {
+      "name": "probability",
+      "superClass": ["Value"],
+      "meta": {
+        "displayName": "Prob.",
+        "description": "double between 0 and 1"
+      }
+    },
+    {
+      "name": "standardDeviation",
+      "superClass": ["Value"],
+      "meta": {
+        "displayName": "std-dev",
+        "description": "double > 0"
+      }
+    },
+    {
+      "name": "amount",
+      "superClass": ["Value"],
+      "meta": {
+        "displayName": "amount",
+        "description": "integer"
+      }
+    },
+    {
+      "name": "mean",
+      "superClass": ["Value"],
+      "meta": {
+        "displayName": "mean",
+        "description": "(positive) double"
+      }
+    },
+    {
+      "name": "order",
+      "superClass": ["Value"],
+      "meta": {
+        "displayName": "order",
+        "description": "integer >= 1"
+      }
+    },
+    {
+      "name": "lower",
+      "superClass": ["Value"],
+      "meta": {
+        "displayName": "lower",
+        "description": "double <= peak (and < upper)"
+      }
+    },
+    {
+      "name": "upper",
+      "superClass": ["Value"],
+      "meta": {
+        "displayName": "upper",
+        "description": "double > lower (and >= peak)"
+      }
+    },
+    {
+      "name": "peak",
+      "superClass": ["Value"],
+      "meta": {
+        "displayName": "peak",
+        "description": "double >= lower and <= upper"
+      }
+    },
+    {
+      "name": "constantValue",
+      "superClass": ["Value"],
+      "meta": {
+        "displayName": "constant val.",
+        "description": "double"
+      }
+    },
     {
       "name": "entry",
       "properties": [
-        { "name": "value", "type": "String", "isAttr": true },
-        { "name": "frequency", "type": "Number", "isAttr": true }
+        {
+          "name": "value",
+          "type": "String",
+          "isAttr": true,
+          "meta": {
+            "displayName": "value",
+            "description": "double (or string)"
+          }
+        },
+        {
+          "name": "frequency",
+          "type": "String",
+          "isAttr": true,
+          "meta": {
+            "displayName": "frequency",
+            "description": "double in [0;1]"
+          }
+        }
       ]
     }
   ],
