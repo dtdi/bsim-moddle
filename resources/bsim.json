@@ -61,6 +61,7 @@
         }
       ]
     },
+
     {
       "name": "simulationConfiguration",
       "superClass": ["bpmn:RootElement"],
@@ -203,7 +204,21 @@
     },
     {
       "name": "subProcess",
-      "superClass": ["simulationConfiguration"]
+      "superClass": ["bsim:simulationConfiguration"],
+      "properties": [
+        {
+          "name": "id",
+          "isId": true,
+          "redefines": "bsim:simulationConfiguration#bsim:id",
+          "isReference": true,
+          "type": "bpmn:BaseElement",
+          "isAttr": true,
+
+          "meta": {
+            "displayName": "Referenced Process Id"
+          }
+        }
+      ]
     },
     {
       "name": "startEvent",
@@ -310,6 +325,17 @@
       "meta": {
         "displayName": "Boundary Event",
         "description": "Each BPMN boundary event belongs to one task. The boundary event will be scheduled by his given event probability after its arrival rate if the scheduling time is smaller or equal to the end of the task. ",
+        "compatible": [
+          "cancelEventDefinition",
+          "compensateEventDefinition",
+          "conditionalEventDefinition",
+          "errorEventDefinition",
+          "escalationEventDefinition",
+          "linkEventDefinition",
+          "messageEventDefinition",
+          "signalEventDefinition",
+          "terminateEventDefinition"
+        ],
         "src": "https://github.com/bptlab/scylla/wiki/BoundaryEvent-Plugin"
       },
       "properties": [
@@ -394,13 +420,8 @@
     },
     {
       "name": "timetable",
+      "superClass": ["bpmn:BaseElement"],
       "properties": [
-        {
-          "name": "id",
-          "type": "String",
-          "isAttr": true,
-          "isId": true
-        },
         {
           "name": "timetableItem",
           "type": "timetableItem",
@@ -410,20 +431,12 @@
     },
     {
       "name": "dynamicResource",
+      "superClass": ["bpmn:BaseElement"],
       "meta": {
         "description": "Define a resource type."
       },
       "properties": [
-        {
-          "name": "id",
-          "type": "String",
-          "isAttr": true,
-          "isId": true,
-          "meta": {
-            "displayName": "Resource ID",
-            "rules": "Alphanum, no space"
-          }
-        },
+        
         {
           "name": "name",
           "type": "String",
@@ -442,11 +455,12 @@
             "description": "How many of this resource are available"
           }
         },
+
         {
           "name": "defaultTimetableId",
-          "type": "timetable",
-          "isReference:": true,
+          "type": "bsim:timetable",
           "isAttr": true,
+          "isReference": true,
           "meta": {
             "displayName": "Timetable",
             "description": "Availability and working hours."
