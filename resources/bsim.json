@@ -286,6 +286,13 @@
           "isAttr": true
         },
         {
+          "name": "bpmnElement",
+          "isAttr": true,
+          "isReference": true,
+          "isVirtual": true,
+          "type": "bpmn:BaseElement"
+        },
+        {
           "name": "resources",
           "type": "resources"
         },
@@ -488,6 +495,13 @@
           "name": "instances",
           "type": "instance",
           "isMany": true
+        },
+        {
+          "name": "bpmnElement",
+          "isAttr": true,
+          "isReference": true,
+          "isVirtual": true,
+          "type": "bpmn:Lane"
         }
       ]
     },
