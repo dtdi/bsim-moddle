@@ -365,7 +365,23 @@
 
     {
       "name": "catchEvent",
-      "superClass": ["Event"]
+      "superClass": ["Event"],
+      "meta": {
+        "displayName": "Boundary Event",
+        "description": "Each BPMN boundary event belongs to one task. The boundary event will be scheduled by his given event probability after its arrival rate if the scheduling time is smaller or equal to the end of the task. ",
+        "compatible": [
+          "cancelEventDefinition",
+          "compensateEventDefinition",
+          "conditionalEventDefinition",
+          "errorEventDefinition",
+          "escalationEventDefinition",
+          "linkEventDefinition",
+          "messageEventDefinition",
+          "signalEventDefinition",
+          "terminateEventDefinition"
+        ],
+        "src": "https://github.com/bptlab/scylla/wiki/BoundaryEvent-Plugin"
+      }
     },
 
     {

@@ -108,6 +108,7 @@
           "type": "String" },
         { "name": "cost", "type": "cost" },
         { "name": "time", "type": "Times" },
+        { "name": "totalInstances", "type": "String", "isAttr": true},
         { "name": "instances", "type": "instances" }
       ]
     },
