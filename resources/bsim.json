@@ -56,7 +56,8 @@
           "name": "resourceAssignmentOrder",
           "type": "String",
           "meta": {
-            "displayName": "Resource Assignment Order"
+            "displayName": "Resource Assignment Order",
+            "description": "one of: simulationTime or priority"
           }
         }
       ]
@@ -118,7 +119,7 @@
           "isAttr": true,
           "meta": {
             "displayName": "End Date Time",
-            "endDateTime": "(Optional) Can be specified, if the simulation should be terminated before all instances finish."
+            "description": "(Optional) Can be specified, if the simulation should be terminated before all instances finish."
           }
         },
         {
@@ -353,7 +354,7 @@
         },
         {
           "name": "eventProbability",
-          "type": "String",
+          "type": "Number",
           "meta": {
             "displayName": "Event Probability",
             "description": "Normally the eventProbability should always be 1, except you have very special claims and you can not regulate it by choosing or modifying the distribution for this boundary event.",
@@ -401,6 +402,7 @@
     {
       "name": "resources",
       "meta": {
+        "displayName": "Assigned Resource",
         "description": "Descibes how many instances of the resource type with the given id are needed to perform the task. If not defined, no resources are assumed."
       },
       "properties": [
@@ -459,7 +461,6 @@
         "description": "Define a resource type."
       },
       "properties": [
-        
         {
           "name": "name",
           "type": "String",
@@ -682,13 +683,16 @@
     },
 
     {
-      "name": "DiscreteAndOtherDistribution",
-      "extends": ["bsim:Distribution"],
-      "isAbstract": true,
-      "meta": {
-        "displayName": "Distribution",
-        "description": "As the simulation is based on randomness, distributions are used to model it."
-      }
+      "name": "KeyValueDistribution",
+      "isAbstract": true
+    },
+    {
+      "name": "DataTypeDistribution",
+      "isAbstract": true
+    },
+    {
+      "name": "DurationDistribution",
+      "isAbstract": true
     },
 
     {
@@ -698,7 +702,11 @@
         "description": "Models a binomial distribution",
         "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Binomial_distribution"
       },
-      "superClass": ["Distribution"],
+      "superClass": [
+        "Distribution",
+        "DataTypeDistribution",
+        "DurationDistribution"
+      ],
       "properties": [
         { "name": "probability", "type": "probability" },
         { "name": "amount", "type": "amount" }
@@ -711,7 +719,11 @@
         "description": "Models a normal distribution",
         "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Normal_distribution"
       },
-      "superClass": ["Distribution"],
+      "superClass": [
+        "Distribution",
+        "DataTypeDistribution",
+        "DurationDistribution"
+      ],
       "properties": [
         { "name": "mean", "type": "mean" },
         { "name": "standardDeviation", "type": "standardDeviation" }
@@ -724,7 +736,11 @@
         "description": "Models a triangular distribution",
         "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Triangular_distribution"
       },
-      "superClass": ["Distribution"],
+      "superClass": [
+        "Distribution",
+        "DataTypeDistribution",
+        "DurationDistribution"
+      ],
       "properties": [
         { "name": "lower", "type": "lower" },
         { "name": "peak", "type": "peak" },
@@ -737,7 +753,11 @@
         "displayName": "constant",
         "description": "Constantly returns one value"
       },
-      "superClass": ["Distribution"],
+      "superClass": [
+        "Distribution",
+        "DataTypeDistribution",
+        "DurationDistribution"
+      ],
       "properties": [
         {
           "name": "constantValue",
@@ -753,7 +773,11 @@
         "description": "Models an erlang distribution",
         "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Erlang_distribution"
       },
-      "superClass": ["Distribution"],
+      "superClass": [
+        "Distribution",
+        "DataTypeDistribution",
+        "DurationDistribution"
+      ],
       "properties": [
         { "name": "order", "type": "order" },
         { "name": "mean", "type": "mean" }
@@ -765,7 +789,11 @@
         "displayName": "arbitrary finite",
         "description": "Models a distribution onto a finite set of elements"
       },
-      "superClass": ["Distribution"],
+      "superClass": [
+        "Distribution",
+        "KeyValueDistribution",
+        "DurationDistribution"
+      ],
       "properties": [{ "name": "entry", "type": "entry", "isMany": true }]
     },
 
@@ -775,7 +803,11 @@
         "displayName": "discrete probability",
         "description": "Models a discrete probability distribution"
       },
-      "superClass": ["DiscreteAndOtherDistribution"],
+      "superClass": [
+        "Distribution",
+        "KeyValueDistribution",
+        "DataTypeDistribution"
+      ],
       "properties": [{ "name": "entry", "type": "entry", "isMany": true }]
     },
 
@@ -785,7 +817,11 @@
         "displayName": "discrete string probability",
         "description": "Models a discrete string probability distribution"
       },
-      "superClass": ["DiscreteAndOtherDistribution"],
+      "superClass": [
+        "Distribution",
+        "KeyValueDistribution",
+        "DataTypeDistribution"
+      ],
       "properties": [{ "name": "entry", "type": "entry", "isMany": true }]
     },
 
@@ -796,7 +832,11 @@
         "description": "Models a uniform distribution",
         "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Continuous_uniform_distribution"
       },
-      "superClass": ["Distribution"],
+      "superClass": [
+        "Distribution",
+        "DataTypeDistribution",
+        "DurationDistribution"
+      ],
       "properties": [
         { "name": "lower", "type": "lower" },
         { "name": "upper", "type": "upper" }
@@ -809,7 +849,11 @@
         "description": "Models an exponential distribution",
         "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Exponential_distribution"
       },
-      "superClass": ["Distribution"],
+      "superClass": [
+        "Distribution",
+        "DataTypeDistribution",
+        "DurationDistribution"
+      ],
       "properties": [{ "name": "mean", "type": "mean" }]
     },
     {
@@ -819,7 +863,11 @@
         "description": "Models a poisson distribution",
         "hint_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Poisson_distribution"
       },
-      "superClass": ["Distribution"],
+      "superClass": [
+        "Distribution",
+        "DataTypeDistribution",
+        "DurationDistribution"
+      ],
       "properties": [{ "name": "mean", "type": "mean" }]
     },
     {
