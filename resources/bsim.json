@@ -6,12 +6,15 @@
   "types": [
     {
       "name": "Base",
-      "superClass": ["bpmn:Base"]
+      "superClass": [
+        "bpmn:Base"
+      ]
     },
-
     {
       "name": "definitions",
-      "extends": ["bpmn:Definitions"],
+      "extends": [
+        "bpmn:Definitions"
+      ],
       "properties": [
         {
           "name": "simulationConfiguration",
@@ -21,11 +24,9 @@
             "displayName": "Simulation Configuration"
           }
         },
-
         {
           "name": "randomSeed",
           "type": "Integer",
-
           "meta": {
             "displayName": "Random Seed"
           }
@@ -57,15 +58,17 @@
           "type": "String",
           "meta": {
             "displayName": "Resource Assignment Order",
+            "description": "one of: simulationTime or priority""displayName": "Resource Assignment Order",
             "description": "one of: simulationTime or priority"
           }
         }
       ]
     },
-
     {
       "name": "simulationConfiguration",
-      "superClass": ["bpmn:RootElement"],
+      "superClass": [
+        "bpmn:RootElement"
+      ],
       "properties": [
         {
           "name": "id",
@@ -82,12 +85,10 @@
           "isReference": true,
           "type": "bpmn:BaseElement",
           "isAttr": true,
-
           "meta": {
             "displayName": "Referenced Process Id"
           }
         },
-
         {
           "name": "bpmnElement",
           "isAttr": true,
@@ -95,7 +96,6 @@
           "isVirtual": true,
           "type": "bpmn:BaseElement"
         },
-
         {
           "name": "processInstances",
           "type": "Integer",
@@ -196,16 +196,22 @@
     {
       "name": "GlobalRootElement",
       "isAbstract": true,
-      "superClass": ["RootElement"]
+      "superClass": [
+        "RootElement"
+      ]
     },
     {
       "name": "Gateway",
-      "superClass": ["RootElement"],
+      "superClass": [
+        "RootElement"
+      ],
       "isAbstract": true
     },
     {
       "name": "subProcess",
-      "superClass": ["bsim:simulationConfiguration"],
+      "superClass": [
+        "bsim:simulationConfiguration"
+      ],
       "properties": [
         {
           "name": "id",
@@ -214,7 +220,6 @@
           "isReference": true,
           "type": "bpmn:BaseElement",
           "isAttr": true,
-
           "meta": {
             "displayName": "Referenced Process Id"
           }
@@ -223,7 +228,9 @@
     },
     {
       "name": "startEvent",
-      "superClass": ["Event"]
+      "superClass": [
+        "Event"
+      ]
     },
     {
       "name": "exclusiveGateway",
@@ -231,7 +238,9 @@
         "displayName": "Exclusive Gateway",
         "description": "Exclusive gateways use branching probabilities to model the simulation flow. The probabilities in each of the outgoing sequence flows need to add to 100%."
       },
-      "superClass": ["Gateway"],
+      "superClass": [
+        "Gateway"
+      ],
       "properties": [
         {
           "name": "outgoing",
@@ -245,7 +254,6 @@
       "properties": [
         {
           "name": "id",
-
           "isAttr": true,
           "isReference": true,
           "type": "bpmn:sequenceFlow"
@@ -279,7 +287,9 @@
         "displayName": "Task",
         "description": "Task elements define the configuration for a BPMN task."
       },
-      "superClass": ["RootElement"],
+      "superClass": [
+        "RootElement"
+      ],
       "properties": [
         {
           "name": "name",
@@ -313,12 +323,15 @@
     },
     {
       "name": "Task",
-      "superClass": ["task"]
+      "superClass": [
+        "task"
+      ]
     },
-
     {
       "name": "Event",
-      "superClass": ["RootElement"],
+      "superClass": [
+        "RootElement"
+      ],
       "properties": [
         {
           "name": "arrivalRate",
@@ -326,10 +339,11 @@
         }
       ]
     },
-
     {
       "name": "boundaryEvent",
-      "superClass": ["Event"],
+      "superClass": [
+        "Event"
+      ],
       "meta": {
         "displayName": "Boundary Event",
         "description": "Each BPMN boundary event belongs to one task. The boundary event will be scheduled by his given event probability after its arrival rate if the scheduling time is smaller or equal to the end of the task. ",
@@ -363,10 +377,11 @@
         }
       ]
     },
-
     {
       "name": "catchEvent",
-      "superClass": ["Event"],
+      "superClass": [
+        "Event"
+      ],
       "meta": {
         "displayName": "Boundary Event",
         "description": "Each BPMN boundary event belongs to one task. The boundary event will be scheduled by his given event probability after its arrival rate if the scheduling time is smaller or equal to the end of the task. ",
@@ -384,7 +399,6 @@
         "src": "https://github.com/bptlab/scylla/wiki/BoundaryEvent-Plugin"
       }
     },
-
     {
       "name": "arrivalRate",
       "properties": [
@@ -445,7 +459,9 @@
     },
     {
       "name": "timetable",
-      "superClass": ["bpmn:BaseElement"],
+      "superClass": [
+        "bpmn:BaseElement"
+      ],
       "properties": [
         {
           "name": "timetableItem",
@@ -456,7 +472,9 @@
     },
     {
       "name": "dynamicResource",
-      "superClass": ["bpmn:BaseElement"],
+      "superClass": [
+        "bpmn:BaseElement"
+      ],
       "meta": {
         "description": "Define a resource type."
       },
@@ -479,7 +497,6 @@
             "description": "How many of this resource are available"
           }
         },
-
         {
           "name": "defaultTimetableId",
           "type": "bsim:timetable",
@@ -581,10 +598,26 @@
     {
       "name": "timetableItem",
       "properties": [
-        { "name": "from", "type": "DayOfWeek", "isAttr": true },
-        { "name": "to", "type": "DayOfWeek", "isAttr": true },
-        { "name": "beginTime", "type": "Number", "isAttr": true },
-        { "name": "endTime", "type": "Number", "isAttr": true }
+        {
+          "name": "from",
+          "type": "DayOfWeek",
+          "isAttr": true
+        },
+        {
+          "name": "to",
+          "type": "DayOfWeek",
+          "isAttr": true
+        },
+        {
+          "name": "beginTime",
+          "type": "Number",
+          "isAttr": true
+        },
+        {
+          "name": "endTime",
+          "type": "Number",
+          "isAttr": true
+        }
       ]
     },
     {
@@ -606,17 +639,17 @@
         }
       ]
     },
-
     {
       "name": "dataObject",
-      "superClass": ["RootElement"],
+      "superClass": [
+        "RootElement"
+      ],
       "properties": [
         {
           "name": "name",
           "type": "String",
           "isAttr": true
         },
-
         {
           "name": "fields",
           "type": "field",
@@ -624,7 +657,6 @@
         }
       ]
     },
-
     {
       "name": "field",
       "properties": [
@@ -644,7 +676,6 @@
         }
       ]
     },
-
     {
       "name": "duration",
       "meta": {
@@ -670,7 +701,9 @@
         "displayName": "Set-Up Duration",
         "description": "Can optionally be defined, works similar to the duration element, but describes the setup duration. If not defined, no setup-duration is assumed."
       },
-      "superClass": ["duration"]
+      "superClass": [
+        "duration"
+      ]
     },
     {
       "name": "Distribution",
@@ -681,7 +714,6 @@
         "src": "https://github.com/bptlab/scylla/wiki/Simulation-Configuration"
       }
     },
-
     {
       "name": "KeyValueDistribution",
       "isAbstract": true
@@ -694,7 +726,6 @@
       "name": "DurationDistribution",
       "isAbstract": true
     },
-
     {
       "name": "binomialDistribution",
       "meta": {
@@ -708,8 +739,14 @@
         "DurationDistribution"
       ],
       "properties": [
-        { "name": "probability", "type": "probability" },
-        { "name": "amount", "type": "amount" }
+        {
+          "name": "probability",
+          "type": "probability"
+        },
+        {
+          "name": "amount",
+          "type": "amount"
+        }
       ]
     },
     {
@@ -725,8 +762,14 @@
         "DurationDistribution"
       ],
       "properties": [
-        { "name": "mean", "type": "mean" },
-        { "name": "standardDeviation", "type": "standardDeviation" }
+        {
+          "name": "mean",
+          "type": "mean"
+        },
+        {
+          "name": "standardDeviation",
+          "type": "standardDeviation"
+        }
       ]
     },
     {
@@ -742,9 +785,18 @@
         "DurationDistribution"
       ],
       "properties": [
-        { "name": "lower", "type": "lower" },
-        { "name": "peak", "type": "peak" },
-        { "name": "upper", "type": "upper" }
+        {
+          "name": "lower",
+          "type": "lower"
+        },
+        {
+          "name": "peak",
+          "type": "peak"
+        },
+        {
+          "name": "upper",
+          "type": "upper"
+        }
       ]
     },
     {
@@ -762,7 +814,9 @@
         {
           "name": "constantValue",
           "type": "constantValue",
-          "meta": { "displayName": "constantly returns one value" }
+          "meta": {
+            "displayName": "constantly returns one value"
+          }
         }
       ]
     },
@@ -779,8 +833,14 @@
         "DurationDistribution"
       ],
       "properties": [
-        { "name": "order", "type": "order" },
-        { "name": "mean", "type": "mean" }
+        {
+          "name": "order",
+          "type": "order"
+        },
+        {
+          "name": "mean",
+          "type": "mean"
+        }
       ]
     },
     {
@@ -794,9 +854,14 @@
         "KeyValueDistribution",
         "DurationDistribution"
       ],
-      "properties": [{ "name": "entry", "type": "entry", "isMany": true }]
+      "properties": [
+        {
+          "name": "entry",
+          "type": "entry",
+          "isMany": true
+        }
+      ]
     },
-
     {
       "name": "discreteProbabilityDistribution",
       "meta": {
@@ -808,9 +873,14 @@
         "KeyValueDistribution",
         "DataTypeDistribution"
       ],
-      "properties": [{ "name": "entry", "type": "entry", "isMany": true }]
+      "properties": [
+        {
+          "name": "entry",
+          "type": "entry",
+          "isMany": true
+        }
+      ]
     },
-
     {
       "name": "discreteStringProbabilityDistribution",
       "meta": {
@@ -822,9 +892,14 @@
         "KeyValueDistribution",
         "DataTypeDistribution"
       ],
-      "properties": [{ "name": "entry", "type": "entry", "isMany": true }]
+      "properties": [
+        {
+          "name": "entry",
+          "type": "entry",
+          "isMany": true
+        }
+      ]
     },
-
     {
       "name": "uniformDistribution",
       "meta": {
@@ -838,8 +913,14 @@
         "DurationDistribution"
       ],
       "properties": [
-        { "name": "lower", "type": "lower" },
-        { "name": "upper", "type": "upper" }
+        {
+          "name": "lower",
+          "type": "lower"
+        },
+        {
+          "name": "upper",
+          "type": "upper"
+        }
       ]
     },
     {
@@ -854,7 +935,12 @@
         "DataTypeDistribution",
         "DurationDistribution"
       ],
-      "properties": [{ "name": "mean", "type": "mean" }]
+      "properties": [
+        {
+          "name": "mean",
+          "type": "mean"
+        }
+      ]
     },
     {
       "name": "poissonDistribution",
@@ -868,16 +954,29 @@
         "DataTypeDistribution",
         "DurationDistribution"
       ],
-      "properties": [{ "name": "mean", "type": "mean" }]
+      "properties": [
+        {
+          "name": "mean",
+          "type": "mean"
+        }
+      ]
     },
     {
       "name": "Value",
       "isAbstract": true,
-      "properties": [{ "name": "value", "type": "Number", "isBody": true }]
+      "properties": [
+        {
+          "name": "value",
+          "type": "Number",
+          "isBody": true
+        }
+      ]
     },
     {
       "name": "probability",
-      "superClass": ["Value"],
+      "superClass": [
+        "Value"
+      ],
       "meta": {
         "displayName": "Prob.",
         "description": "double between 0 and 1"
@@ -885,7 +984,9 @@
     },
     {
       "name": "standardDeviation",
-      "superClass": ["Value"],
+      "superClass": [
+        "Value"
+      ],
       "meta": {
         "displayName": "std-dev",
         "description": "double > 0"
@@ -893,7 +994,9 @@
     },
     {
       "name": "amount",
-      "superClass": ["Value"],
+      "superClass": [
+        "Value"
+      ],
       "meta": {
         "displayName": "amount",
         "description": "integer"
@@ -901,7 +1004,9 @@
     },
     {
       "name": "mean",
-      "superClass": ["Value"],
+      "superClass": [
+        "Value"
+      ],
       "meta": {
         "displayName": "mean",
         "description": "(positive) double"
@@ -909,7 +1014,9 @@
     },
     {
       "name": "order",
-      "superClass": ["Value"],
+      "superClass": [
+        "Value"
+      ],
       "meta": {
         "displayName": "order",
         "description": "integer >= 1"
@@ -917,7 +1024,9 @@
     },
     {
       "name": "lower",
-      "superClass": ["Value"],
+      "superClass": [
+        "Value"
+      ],
       "meta": {
         "displayName": "lower",
         "description": "double <= peak (and < upper)"
@@ -925,7 +1034,9 @@
     },
     {
       "name": "upper",
-      "superClass": ["Value"],
+      "superClass": [
+        "Value"
+      ],
       "meta": {
         "displayName": "upper",
         "description": "double > lower (and >= peak)"
@@ -933,7 +1044,9 @@
     },
     {
       "name": "peak",
-      "superClass": ["Value"],
+      "superClass": [
+        "Value"
+      ],
       "meta": {
         "displayName": "peak",
         "description": "double >= lower and <= upper"
@@ -941,7 +1054,9 @@
     },
     {
       "name": "constantValue",
-      "superClass": ["Value"],
+      "superClass": [
+        "Value"
+      ],
       "meta": {
         "displayName": "constant val.",
         "description": "double"
@@ -975,34 +1090,70 @@
     {
       "name": "TimeUnit",
       "literalValues": [
-        { "name": "HOURS" },
-        { "name": "MINUTES" },
-        { "name": "DAYS" },
-        { "name": "SECONDS" },
-        { "name": "MICROSECONDS" },
-        { "name": "MILLISECONDS" },
-        { "name": "NANOSECONDS" }
+        {
+          "name": "HOURS"
+        },
+        {
+          "name": "MINUTES"
+        },
+        {
+          "name": "DAYS"
+        },
+        {
+          "name": "SECONDS"
+        },
+        {
+          "name": "MICROSECONDS"
+        },
+        {
+          "name": "MILLISECONDS"
+        },
+        {
+          "name": "NANOSECONDS"
+        }
       ]
     },
     {
       "name": "Type",
       "literalValues": [
-        { "name": "long" },
-        { "name": "double" },
-        { "name": "string" },
-        { "name": "boolean" }
+        {
+          "name": "long"
+        },
+        {
+          "name": "double"
+        },
+        {
+          "name": "string"
+        },
+        {
+          "name": "boolean"
+        }
       ]
     },
     {
       "name": "DayOfWeek",
       "literalValues": [
-        { "name": "FRIDAY" },
-        { "name": "MONDAY" },
-        { "name": "SATURDAY" },
-        { "name": "SUNDAY" },
-        { "name": "THURSDAY" },
-        { "name": "TUESDAY" },
-        { "name": "WEDNESDAY" }
+        {
+          "name": "FRIDAY"
+        },
+        {
+          "name": "MONDAY"
+        },
+        {
+          "name": "SATURDAY"
+        },
+        {
+          "name": "SUNDAY"
+        },
+        {
+          "name": "THURSDAY"
+        },
+        {
+          "name": "TUESDAY"
+        },
+        {
+          "name": "WEDNESDAY"
+        }
       ]
     }
   ]
